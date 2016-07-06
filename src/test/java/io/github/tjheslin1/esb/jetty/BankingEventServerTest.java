@@ -1,11 +1,12 @@
 package io.github.tjheslin1.esb.jetty;
 
 import io.github.tjheslin1.WithMockito;
+import io.github.tjheslin1.esb.infrastructure.application.web.DepositRequest;
+import io.github.tjheslin1.esb.infrastructure.jetty.BankingEventServer;
 import io.github.tjheslin1.esb.settings.Settings;
 import io.github.tjheslin1.esb.settings.TestSettings;
 import org.assertj.core.api.WithAssertions;
 import org.eclipse.jetty.http.HttpStatus;
-import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,11 +24,8 @@ public class BankingEventServerTest implements WithAssertions, WithMockito {
     @Before
     public void startServer() throws Exception {
         server = new BankingEventServer(settings);
+        server.withContext(DepositServlet.class, "/deposit");
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-        context.addServlet(DepositServlet.class, "/deposit");
-
-        server.setHandler(context);
         server.start();
     }
 
@@ -41,10 +39,17 @@ public class BankingEventServerTest implements WithAssertions, WithMockito {
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void testPost() throws Exception {
         URL url = new URL(format("%s%s:%s/deposit", settings.webProtocol(), settings.host(), settings.serverPort()));
-        HttpURLConnection http = (HttpURLConnection) url.openConnection();
-        http.connect();
-        assertThat(http.getResponseCode()).isEqualTo(HttpStatus.OK_200);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+
+        connection.setRequestProperty("Content-Type", "application/json");
+
+        connection.getOutputStream().write(new DepositRequest(7, 45.0).toJson().getBytes("UTF-8"));
+
+        connection.connect();
+        assertThat(connection.getResponseCode()).isEqualTo(HttpStatus.OK_200);
     }
 }
