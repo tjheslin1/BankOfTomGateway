@@ -15,7 +15,7 @@ public class DepositServlet extends HttpServlet {
         response.getWriter().println("{ \"servletName\": \"" + servletName() + "\" }");
     }
 
-    public static String servletName() {
+    private static String servletName() {
         return DepositServlet.class.getSimpleName();
     }
 }

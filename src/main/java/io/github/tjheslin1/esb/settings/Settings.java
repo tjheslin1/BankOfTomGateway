@@ -8,6 +8,17 @@ public class Settings implements ServerSettings {
         this.propertiesReader = propertiesReader;
     }
 
+    @Override
+    public String webProtocol() {
+        return propertiesReader.readProperty("web.protocol");
+    }
+
+    @Override
+    public String host() {
+        return propertiesReader.readProperty("host");
+    }
+
+    @Override
     public int serverPort() {
         return Integer.parseInt(propertiesReader.readProperty("server.port"));
     }

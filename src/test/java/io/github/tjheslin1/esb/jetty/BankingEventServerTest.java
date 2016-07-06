@@ -13,6 +13,8 @@ import org.junit.Test;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static java.lang.String.format;
+
 public class BankingEventServerTest implements WithAssertions, WithMockito {
 
     private Settings settings = new TestSettings();
@@ -40,7 +42,8 @@ public class BankingEventServerTest implements WithAssertions, WithMockito {
 
     @Test
     public void testGet() throws Exception {
-        HttpURLConnection http = (HttpURLConnection) new URL("http://localhost:8085/deposit").openConnection();
+        URL url = new URL(format("%s%s:%s/deposit", settings.webProtocol(), settings.host(), settings.serverPort()));
+        HttpURLConnection http = (HttpURLConnection) url.openConnection();
         http.connect();
         assertThat(http.getResponseCode()).isEqualTo(HttpStatus.OK_200);
     }
