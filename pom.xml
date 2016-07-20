@@ -21,9 +21,11 @@
         <maven.compiler.plugin.version>3.5</maven.compiler.plugin.version>
 
         <skipTests>false</skipTests>
+        <root.package>io.github.tjheslin1.esb.*</root.package>
     </properties>
 
     <build>
+        <defaultGoal>clean test org.pitest:pitest-maven:mutationCoverage</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -83,5 +85,88 @@
             <version>20160212</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-maven</artifactId>
+                        <version>1.1.10</version>
+                        <configuration>
+                            <reportsDirectory>${project.build.directory}/pit-output</reportsDirectory>
+                            <skip>${skipTests}</skip>
+                            <threads>4</threads>
+                            <withHistory>false</withHistory>
+                            <mutationThreshold>100</mutationThreshold>
+                            <timestampedReports>false</timestampedReports>
+                            <failWhenNoMutations>true</failWhenNoMutations>
+                            <timeoutFactor>1.25</timeoutFactor>
+                            <timeoutConstant>3000</timeoutConstant>
+                            <mutators>
+                                <mutator>INVERT_NEGS</mutator>
+                                <mutator>RETURN_VALS</mutator>
+                                <mutator>MATH</mutator>
+                                <mutator>VOID_METHOD_CALLS</mutator>
+                                <mutator>NEGATE_CONDITIONALS</mutator>
+                                <mutator>CONDITIONALS_BOUNDARY</mutator>
+                                <mutator>INCREMENTS</mutator>
+                                <mutator>REMOVE_CONDITIONALS</mutator>
+                            </mutators>
+                            <excludedMethods>
+                                <excludedMethod>hashCode</excludedMethod>
+                                <excludedMethod>equals</excludedMethod>
+                            </excludedMethods>
+                            <excludedClasses>
+                                <!--<excludedClass>${root.package}.domain.eventstore.EventStore</excludedClass>-->
+                            </excludedClasses>
+                            <parseSurefireConfig>false</parseSurefireConfig>
+                            <targetClasses>
+                                <param>${root.package}.*</param>
+                            </targetClasses>
+                            <targetTests>
+                                <param>${root.package}.*</param>
+                            </targetTests>
+                            <jvmArgs>
+                                <jvmArg>-Dsilent.process.errors=true</jvmArg>
+                            </jvmArgs>
+                            <exportLineCoverage>true</exportLineCoverage>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>mutationCoverage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
