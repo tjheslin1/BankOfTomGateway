@@ -25,7 +25,7 @@
     </properties>
 
     <build>
-        <defaultGoal>clean test org.pitest:pitest-maven:mutationCoverage</defaultGoal>
+        <defaultGoal>clean test org.pitest:pitest-maven:mutationCoverage package</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -115,13 +115,14 @@
                     <plugin>
                         <groupId>org.pitest</groupId>
                         <artifactId>pitest-maven</artifactId>
-                        <version>1.1.10</version>
+                        <version>1.1.9</version>
                         <configuration>
                             <reportsDirectory>${project.build.directory}/pit-output</reportsDirectory>
                             <skip>${skipTests}</skip>
                             <threads>4</threads>
                             <withHistory>false</withHistory>
                             <mutationThreshold>100</mutationThreshold>
+                            <verbose>false</verbose>
                             <timestampedReports>false</timestampedReports>
                             <failWhenNoMutations>true</failWhenNoMutations>
                             <timeoutFactor>1.25</timeoutFactor>
@@ -136,24 +137,24 @@
                                 <mutator>INCREMENTS</mutator>
                                 <mutator>REMOVE_CONDITIONALS</mutator>
                             </mutators>
-                            <excludedMethods>
-                                <excludedMethod>hashCode</excludedMethod>
-                                <excludedMethod>equals</excludedMethod>
-                            </excludedMethods>
-                            <excludedClasses>
-                                <!--<excludedClass>${root.package}.domain.eventstore.EventStore</excludedClass>-->
-                            </excludedClasses>
                             <parseSurefireConfig>false</parseSurefireConfig>
                             <targetClasses>
-                                <param>${root.package}.*</param>
+                                <param>io.github.tjheslin1.esb.*</param>
                             </targetClasses>
                             <targetTests>
-                                <param>${root.package}.*</param>
+                                <param>io.github.tjheslin1.esb.*</param>
                             </targetTests>
                             <jvmArgs>
                                 <jvmArg>-Dsilent.process.errors=true</jvmArg>
                             </jvmArgs>
                             <exportLineCoverage>true</exportLineCoverage>
+                            <excludedClasses>
+                                <!--<excludedClass>io.github.tjheslin1.esb.infrastructure.domain.eventstore.BankingEventServer</excludedClass>-->
+                            </excludedClasses>
+                            <excludedMethods>
+                                <excludedMethod>equals</excludedMethod>
+                                <excludedMethod>hashCode</excludedMethod>
+                            </excludedMethods>
                         </configuration>
                         <executions>
                             <execution>
@@ -168,5 +169,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>

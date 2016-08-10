@@ -9,11 +9,6 @@ public class Settings implements ServerSettings {
     }
 
     @Override
-    public String webProtocol() {
-        return propertiesReader.readProperty("web.protocol");
-    }
-
-    @Override
     public String host() {
         return propertiesReader.readProperty("host");
     }

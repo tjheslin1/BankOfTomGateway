@@ -10,6 +10,6 @@ public class PropertiesReaderTest implements WithAssertions, WithMockito {
     public void readProperty() throws Exception {
         PropertiesReader propertiesReader = new PropertiesReader("localhost");
 
-        assertThat(propertiesReader.readProperty("server.port")).isEqualTo("8085");
+        assertThat(propertiesReader.readProperty("server.port")).isEqualTo("8086");
     }
 }
