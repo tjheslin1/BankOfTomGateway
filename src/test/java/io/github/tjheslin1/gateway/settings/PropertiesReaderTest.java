@@ -1,4 +1,4 @@
-package io.github.tjheslin1.esb.settings;
+package io.github.tjheslin1.gateway.settings;
 
 import io.github.tjheslin1.WithMockito;
 import org.assertj.core.api.WithAssertions;

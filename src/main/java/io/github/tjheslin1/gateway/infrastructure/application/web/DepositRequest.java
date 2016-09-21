@@ -1,6 +1,6 @@
-package io.github.tjheslin1.esb.infrastructure.application.web;
+package io.github.tjheslin1.gateway.infrastructure.application.web;
 
-import io.github.tjheslin1.esb.application.web.Request;
+import io.github.tjheslin1.gateway.application.web.Request;
 
 import static java.lang.String.format;
 

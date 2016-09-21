@@ -1,6 +1,6 @@
-package io.github.tjheslin1.esb.infrastructure.domain.eventstore;
+package io.github.tjheslin1.gateway.infrastructure.domain.eventstore;
 
-import io.github.tjheslin1.esb.settings.Settings;
+import io.github.tjheslin1.gateway.settings.Settings;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

@@ -1,7 +1,8 @@
-package io.github.tjheslin1.esb.jetty;
+§§package io.github.tjheslin1.gateway.jetty;
 
-import io.github.tjheslin1.esb.infrastructure.application.web.DepositRequest;
-import io.github.tjheslin1.esb.infrastructure.application.web.DepositRequestJsonUnmarshaller;
+import io.github.tjheslin1.gateway.application.usecases.DepositUseCase;
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequest;
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequestJsonUnmarshaller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,11 @@ import java.util.stream.Collectors;
 
 public class DepositServlet extends HttpServlet {
 
-    private DepositRequestJsonUnmarshaller unmarshaller = new DepositRequestJsonUnmarshaller();
+    private final DepositRequestJsonUnmarshaller unmarshaller;
+
+    public DepositServlet(DepositRequestJsonUnmarshaller unmarshaller) {
+        this.unmarshaller = unmarshaller;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

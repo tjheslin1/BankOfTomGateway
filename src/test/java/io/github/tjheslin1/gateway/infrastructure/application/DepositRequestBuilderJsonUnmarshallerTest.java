@@ -1,7 +1,7 @@
-package io.github.tjheslin1.esb.infrastructure.application;
+package io.github.tjheslin1.gateway.infrastructure.application;
 
-import io.github.tjheslin1.esb.infrastructure.application.web.DepositRequest;
-import io.github.tjheslin1.esb.infrastructure.application.web.DepositRequestJsonUnmarshaller;
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequest;
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequestJsonUnmarshaller;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package io.github.tjheslin1.esb.application.web;
+package io.github.tjheslin1.gateway.application.web;
 
 public interface JsonUnmarshaller<Request> {
 

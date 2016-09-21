@@ -1,9 +1,9 @@
-package io.github.tjheslin1.esb.infrastructure.domain.eventstore;
+package io.github.tjheslin1.gateway.infrastructure.domain.eventstore;
 
 import io.github.tjheslin1.WithMockito;
-import io.github.tjheslin1.esb.infrastructure.application.web.DepositRequest;
-import io.github.tjheslin1.esb.jetty.DepositServlet;
-import io.github.tjheslin1.esb.settings.Settings;
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequest;
+import io.github.tjheslin1.gateway.jetty.DepositServlet;
+import io.github.tjheslin1.gateway.settings.Settings;
 import org.assertj.core.api.WithAssertions;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.After;
