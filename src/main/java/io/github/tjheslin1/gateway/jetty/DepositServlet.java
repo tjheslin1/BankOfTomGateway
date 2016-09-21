@@ -1,6 +1,5 @@
 package io.github.tjheslin1.gateway.jetty;
 
-import io.github.tjheslin1.gateway.application.usecases.DepositUseCase;
 import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequest;
 import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequestJsonUnmarshaller;
 
