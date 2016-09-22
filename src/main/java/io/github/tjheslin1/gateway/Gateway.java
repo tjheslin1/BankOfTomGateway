@@ -1,6 +1,5 @@
 package io.github.tjheslin1.gateway;
 
-import io.github.tjheslin1.gateway.infrastructure.domain.eventstore.BankingEventServer;
 import io.github.tjheslin1.gateway.settings.Settings;
 
 import java.io.IOException;
