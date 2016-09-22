@@ -1,5 +1,6 @@
 package io.github.tjheslin1.gateway;
 
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequestJsonUnmarshaller;
 import io.github.tjheslin1.gateway.jetty.DepositServlet;
 import io.github.tjheslin1.gateway.settings.Settings;
 
@@ -13,6 +14,6 @@ public class Wiring {
 
 
     public DepositServlet depositServlet() {
-        return new DepositServlet(depositUseCase, unmarshaller);
+        return new DepositServlet(new DepositRequestJsonUnmarshaller());
     }
 }

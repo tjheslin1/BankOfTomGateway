@@ -6,8 +6,8 @@ import static java.lang.String.format;
 
 public class DepositRequest implements Request {
 
-    private int accountId;
-    private double amount;
+    public final int accountId;
+    public final double amount;
 
     public DepositRequest(int accountId, double amount) {
         this.accountId = accountId;
@@ -16,7 +16,7 @@ public class DepositRequest implements Request {
 
     @Override
     public String toJson() {
-        return format("{\"accountId\": \"%s\", \"amount\": \"%s\"}", accountId, amount);
+        return format("{ \"accountId\": \"%s\", \"amount\": \"%s\" }", accountId, amount);
     }
 
     @Override
