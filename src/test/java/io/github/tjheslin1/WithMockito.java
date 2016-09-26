@@ -16,4 +16,8 @@ public interface WithMockito {
     default <T> T verify(T mock) {
         return Mockito.verify(mock);
     }
+
+    default <T> T any() {
+        return Mockito.any();
+    }
 }

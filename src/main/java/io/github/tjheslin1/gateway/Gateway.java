@@ -1,6 +1,11 @@
 package io.github.tjheslin1.gateway;
 
+import io.github.tjheslin1.gateway.infrastructure.application.web.DepositRequestJsonUnmarshaller;
+import io.github.tjheslin1.gateway.infrastructure.domain.eventstore.BankingEventServer;
+import io.github.tjheslin1.gateway.infrastructure.domain.eventstore.BankingEventServerBuilder;
+import io.github.tjheslin1.gateway.jetty.DepositServlet;
 import io.github.tjheslin1.gateway.settings.Settings;
+import org.eclipse.jetty.servlet.ServletHolder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,9 +22,10 @@ public class Gateway {
 
         Wiring wiring = new Wiring(settings);
 
-        // TODO move new up of DepositServlet into Wiring
-        BankingEventServer bankingEventServer = new BankingEventServer(settings)
-                .withServlet(wiring.depositServlet(), "/deposit");
+        DepositServlet depositServlet = new DepositServlet(new DepositRequestJsonUnmarshaller());
+        BankingEventServer bankingEventServer = new BankingEventServerBuilder(wiring.servletContextHandler(), settings)
+                .withServlet(new ServletHolder(depositServlet), "/deposit")
+                .build();
 
         bankingEventServer.start();
         bankingEventServer.stop();
