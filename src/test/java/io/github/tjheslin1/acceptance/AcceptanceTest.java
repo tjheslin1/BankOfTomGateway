@@ -2,6 +2,7 @@ package io.github.tjheslin1.acceptance;
 
 import com.googlecode.yatspec.junit.SpecRunner;
 import io.github.theangrydev.yatspecfluent.FluentTest;
+import io.github.tjheslin1.acceptance.testinfrastructure.TestInfrastructure;
 import org.assertj.core.api.WithAssertions;
 import org.junit.After;
 import org.junit.Before;

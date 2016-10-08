@@ -1,6 +1,7 @@
-package io.github.tjheslin1.acceptance;
+package io.github.tjheslin1.acceptance.givens;
 
 import io.github.theangrydev.yatspecfluent.Given;
+import io.github.tjheslin1.acceptance.testinfrastructure.TestInfrastructure;
 import io.github.tjheslin1.gateway.application.probe.Probe;
 import io.github.tjheslin1.gateway.application.usecases.StatusUseCase;
 import io.github.tjheslin1.gateway.infrastructure.application.web.status.StatusResponseJsonMarshaller;

@@ -1,4 +1,4 @@
-package io.github.tjheslin1.acceptance;
+package io.github.tjheslin1.acceptance.testinfrastructure;
 
 import io.github.tjheslin1.gateway.Gateway;
 import io.github.tjheslin1.gateway.infrastructure.domain.eventstore.BankingEventServerBuilder;
